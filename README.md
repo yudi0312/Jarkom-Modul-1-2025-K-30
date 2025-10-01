@@ -192,10 +192,232 @@ Device : **Keyboard**
    Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari file capture yang ada, identifikasi file apa yang diletakkan oleh Melkor.
 	[link file](https://drive.google.com/drive/folders/1aJf_PQGXwr4fxd79df8nd7NzL7SsN6U9) nc 10.15.43.32 3403. 
 
-1. 
+1. Pertama-tama kami mendownload file yang diberikan dan langsung melakukan unzip dan mendapatkan satu file bernama **MelkorPlan1.pcap**
+   
+   <img width="1919" height="464" alt="Screenshot 2025-10-01 142450" src="https://github.com/user-attachments/assets/7ea555d4-77cf-452b-a08c-ee8eb82c0a7f" />
+
+2. Setelah kami melakukan unzip pada file tersebut, kami menjalankan file tersebut di wireshark dan menjalankan **nc 10.15.43.32 3403** di terminal kali.
+
+   <img width="1919" height="1021" alt="Screenshot 2025-10-01 144457" src="https://github.com/user-attachments/assets/57c522d5-066b-4219-bbac-483ea3a6c567" />
+
+3. Pada soal pertama, terdapat pertanyaan :
+   - **What credential did the attacker use to log in?** Format: user:pass
+
+	Kami disuruh menganalisis untuk mencari kredensial apa yang digunakan penyerang dalam format **user:pass**. 
+
+	<img width="1919" height="1018" alt="Screenshot 2025-10-01 142657" src="https://github.com/user-attachments/assets/2398e062-a10b-4155-a4d9-04eef5099ecc" />
+
+	Kami langsung mencari paket yang mencurigakan, biasanya log in yang sukses itu terdapat di bagian akhir-akhir. Setelah menemukan paketnya, kami melakukan follow TCP Stream pada paket tersebut.
+
+	<img width="1918" height="1018" alt="Screenshot 2025-10-01 142715" src="https://github.com/user-attachments/assets/8763dabd-031b-403e-9093-15c2551b4dd8" />
+
+	Disini kami mendapatkan user dan pass yang digunakan oleh penyerang.
+
+	USER : **ind@psg420.com**
+	PASS : **{6r_6e#TfT1p**
+
+4. Selanjutnya kami diberikan tugas untuk mencari beberapa paket yang mungkin terdapat malware.
+	- **How many files are suspected of containing malware?** Format: int
+
+	<img width="1916" height="1015" alt="Screenshot 2025-10-01 143037" src="https://github.com/user-attachments/assets/5252be62-00b0-43dd-ab19-708530bb0e2d" />
+
+	<img width="1917" height="1017" alt="Screenshot 2025-10-01 143117" src="https://github.com/user-attachments/assets/095c3c0d-cf52-4572-9d89-f497f87f88f2" />
+
+	Disini terdapat 5 file yang mengandung malware.
+
+	FILE CONTAINING MALWARE : **5**
+
+5. Setelah itu, kami disuruh untuk mencari hash dari beberapa file yang ada.
+   - What is the hash of the file (q.exe, w.exe, e.exe, r.exe, t.exe)? Format: sha25
+
+	Untuk mencari hash dari file diatas, kami langsung saja mencari paket yang mengandung q.exe, w.exe, e.exe, r.exe dan t.exe. Setelah itu kami melakukan Follow TCP Stream untuk file tersebut. 
+
+	<img width="1918" height="1018" alt="Screenshot 2025-10-01 143253" src="https://github.com/user-attachments/assets/9ea7e565-bb02-454f-b470-4d5bebb145f7" />
+
+   Setelah melakukan Follow TCP Stream, kami mendownload filenya dalam bentuk raw.
+
+   <img width="1918" height="1017" alt="Screenshot 2025-10-01 143340" src="https://github.com/user-attachments/assets/ce9554b6-d74e-4a19-8f0c-296af42f51d6" />
+
+   Semua file q.exe, w.exe, e.exe, r.exe dan t.exe sudah di simpan dan kami pindah ke terminal kali linux untuk menjalankan `sha256sum [namafile].exe`.
+   
+	<img width="1918" height="802" alt="Screenshot 2025-10-01 144052" src="https://github.com/user-attachments/assets/b13daaf1-18be-4aa4-b11f-8ca049488685" />
+
+	Hasil hash tersebut di input semua dan kami langsung mendapatkan flag yang kami cari.
+
+	FLAG : **KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_MTD7eVP68trIhgC4GuGWHA8EJ}**
+
+	<img width="1919" height="961" alt="Screenshot 2025-10-01 144104" src="https://github.com/user-attachments/assets/3d7d88af-05e6-4418-9dc0-b510238b0ff6" />
+
+### 17. Analisis file capture Analisis file capture untuk menggagalkan rencana Melkor
+
+Manwe membuat halaman web di node-nya yang menampilkan gambar cincin agung. Melkor yang melihat web tersebut merasa iri sehingga ia meletakkan file berbahaya agar web tersebut dapat dianggap menyebarkan malware oleh Eru. Analisis file capture untuk menggagalkan rencana Melkor dan menyelamatkan web Manwe.
+(link file) nc 10.15.43.32 3404
+
+1. Hal yang pertama kami lakukan, yaitu mendownload file yang diberikan dan melakukan unzip pada file tersebut. Hasil dari unzip tersebut memberikan satu file yang bernama **MelkorPlan2.pcap** dan kami langsung membuka file tersebut menggunakan wireshark dan menjalankan `nc 10.15.43.32 3404` di terminal kali linux.
+
+   <img width="1919" height="762" alt="Screenshot 2025-10-01 150802" src="https://github.com/user-attachments/assets/925ea7b9-8ca4-4e3c-aebb-24edfa8ef9e9" />
+
+	<img width="1918" height="1017" alt="Screenshot 2025-10-01 150826" src="https://github.com/user-attachments/assets/85b7d6f3-f3ca-484d-867e-e2c8a4fe7394" />
+
+2. Soal pertama dan kedua yang kami dapat, yaitu :
+   - **What is the name of the first suspicious file?** Format: file.exe
+   - **What is the name of the second suspicious file?** Format: file.exe
+   Untuk menemukan suspicious file, kami masuk ke dalam export object HTTP dan mendapatkan 2 suspicious file.
+
+	<img width="1917" height="1017" alt="Screenshot 2025-10-01 150934" src="https://github.com/user-attachments/assets/92b4163f-4ffc-4944-a60e-8f5b7f9570dd" />
+	
+	<img width="1913" height="1016" alt="Screenshot 2025-10-01 151021" src="https://github.com/user-attachments/assets/89173e07-0a66-464d-8b47-2fde7aca13c9" />
+
+	Kami langsung input nama file tersebut dan memang benar bahwa file tersebut suspicious.
+
+	First Suspicious : **Invoice&MSO-Request.doc**
+
+	Second Suspicious : **knr.exe**
+
+3. Setelah kami mendapat file tersebut, kami lanjut ke soal berikutnya :
+   - **What is the hash of the second suspicious file (knr.exe)?** Format: sha256
+
+	Kami mendownload file **knr.exe** dan langsung menjalankan ` sha256sum knr.exe` untuk menemukan hash dari knr.exe.
+
+	<img width="1918" height="1022" alt="Screenshot 2025-10-01 151138" src="https://github.com/user-attachments/assets/7a413b48-8e6e-40a5-a711-a8d95c1a2c88" />
+
+	<img width="1918" height="604" alt="Screenshot 2025-10-01 151314" src="https://github.com/user-attachments/assets/27df0631-c56c-46ae-b884-f42c391edba8" />
+
+   Ketika kami input hash dari knr.exe, kami mendapatkan flagnya.
+
+   	FLAG : **KOMJAR25{M4ster_4n4lyzer_1eGyiGRw7rSGqBAGYeiJ2Nztq}**
+
+   <img width="1919" height="730" alt="Screenshot 2025-10-01 151323" src="https://github.com/user-attachments/assets/dfa38aaf-4b4c-4201-9cba-0e00e70b6f65" />
+
+### 18. Melkor meletakkan file berbahaya lagi tetapi dengan metode yang berbeda.
+Karena rencana Melkor yang terus gagal, ia akhirnya berhenti sejenak untuk berpikir. Pada saat berpikir ia akhirnya memutuskan untuk membuat rencana jahat lainnya dengan meletakkan file berbahaya lagi tetapi dengan metode yang berbeda. Gagalkan lagi rencana Melkor dengan mengidentifikasi file capture yang disediakan agar dunia tetap aman.
+(link file) nc 10.15.43.32 3405
+
+1. File yang kita sudah download tadi kita ekstrak dan menemukan suatu file dengan nama **MelkorPlan3.pcap**. Setelah kita ekstrak, buka file tersebut di wireshark dan jalankan `nc 10.15.43.32 3405` di terminal linux.
+   
+   <img width="1919" height="514" alt="Screenshot 2025-10-01 153620" src="https://github.com/user-attachments/assets/3b63b084-0288-4815-8805-97e18af59711" />
+   
+	<img width="1918" height="1021" alt="Screenshot 2025-10-01 153641" src="https://github.com/user-attachments/assets/e4b631fd-6c60-411a-aa31-8e71669b333f" />
+
+2. Setelah kita menjalankan `nc 10.15.43.32 3405`, kita mendapatkan pertanyaan :
+   - **How many files are suspected of containing malware?**Format: int
+
+   Untuk pertanyaan ini kami membuka Export Object SMB.
+
+	<img width="1918" height="1017" alt="Screenshot 2025-10-01 153721" src="https://github.com/user-attachments/assets/3ccb5831-18fd-4fde-88d8-577d21bad70d" />
+
+	Pada tools tersebut kami mendapatkan 2 file misterius sesuai dengan gambar. 
+
+	<img width="1917" height="1022" alt="Screenshot 2025-10-01 153753" src="https://github.com/user-attachments/assets/07eb8655-eef9-407a-8ce0-96d2dbd8d2dd" />
+
+   FILES CONTAINING MALWARE : **2**
+
+3. File malware yang kami temukan itu menjawab untuk soal selanjutnya :
+   - **What is the name of the first malicious file?** Format: file.exe
+   - **Apa nama file berbahaya yang kedua?** Format: file.exe
+
+	Tools tadi sekaligus menjawab pertanyaan diatas, yaitu :
+
+	FILE PERTAMA : **d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe**
+	FILE KEDUA : **oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.EXE**
+
+4. Setelah kita menemukan nama file tersebut, download kedua filenya tersebut dan jalankan `sha256sum [namafile].exe` untuk menemukan hashnya.
+
+   <img width="1919" height="475" alt="image" src="https://github.com/user-attachments/assets/bfad54fc-0869-4947-a142-62b76435f97b" />
+
+	Setelah menginput hashnya, kami mendapatkan flag yang kami cari.
+
+	<img width="1919" height="782" alt="image" src="https://github.com/user-attachments/assets/d7f69e19-9b1a-42a8-9452-2f8f8bcc05e1" />
+```c
+	FLAG : **KOMJAR25{Y0u_4re_g0dl1ke_ehWoBb7DO3ZP4g9emSeYHYUnq}**
+```
+### 19. Melkor sipaling jahat langsung melancarkan aksinya yaitu meneror Varda dengan email yang disamarkan
+Manwe mengirimkan email berisi surat cinta kepada Varda melalui koneksi yang tidak terenkripsi. Melihat hal itu Melkor sipaling jahat langsung melancarkan aksinya yaitu meneror Varda dengan email yang disamarkan. Analisis file capture jaringan dan gagalkan lagi rencana busuk Melkor.
+(link file) nc 10.15.43.32 3406
+
+1. Pertama-tama kami melakukan ekstrak untuk file yang sudah diberikan. Setelah di ekstrak, kami membuka file `MelkorPlan4.pcap` di wireshark dan menjalankan  `nc 10.15.43.32 3406` di terminal linux.
+   
+<img width="1898" height="491" alt="Screenshot 2025-10-01 183625" src="https://github.com/user-attachments/assets/a9b53e25-a3af-4bfd-bb18-a93aec6a05cd" />
+
+<img width="1912" height="1021" alt="Screenshot 2025-10-01 183707" src="https://github.com/user-attachments/assets/da509f16-ee23-41ce-b753-8122334287f0" />
+
+2. Setelah kami membuka file dan menjalankan netcat, kami mendapat pertanyaan :
+   - **Who sent the threatening message?** Format: string (name)
+   - **How much ransom did the attacker demand ($)?** Format: int
+   - **What is the attacker's bitcoin wallet?** Format: string
+
+   Pertama-tama buka wireshark dan analisis dengan filter tcp. Setelah itu saya Follow TCP Stream. 
+
+   <img width="1918" height="1013" alt="Screenshot 2025-10-01 183946" src="https://github.com/user-attachments/assets/5438323a-970a-4763-96e6-852713681b37" />
+
+	<img width="1918" height="1010" alt="Screenshot 2025-10-01 184245" src="https://github.com/user-attachments/assets/0dd6784a-e15b-4d0b-91ee-bd02e4d3804a" />
+
+	Disini kami mendapatkan semua jawaban yang diperlukan untuk menjawab pertanyaan tersebut.
+
+	```C
+	USER : Your Life
+
+	RANSOM : 1600
+
+	BITCOIN WALLET :  1CWHmuF8dHt7HBGx5RKKLgg9QA2GmE3UyL\
+
+	FLAG : KOMJAR25{Y0u_4re_J4rk0m_G0d_YHKBrkPR2OAjVX7xF9Mk0diDf}
+   ```
+   
+### 20. Analisis file capture dan identifikasi kegunaan bantuan yang diberikan oleh Manwe
+Untuk yang terakhir kalinya, rencana besar Melkor yaitu menanamkan sebuah file berbahaya kemudian menyembunyikannya agar tidak terlihat oleh Eru. Tetapi Manwe yang sudah merasakan adanya niat jahat dari Melkor, ia menyisipkan bantuan untuk mengungkapkan rencana Melkor. Analisis file capture dan identifikasi kegunaan bantuan yang diberikan oleh Manwe untuk menggagalkan rencana jahat Melkor selamanya.
+(link file) nc 10.15.43.32 3407
+
+1. Pertama-tama kami melakukan unzip untuk file yang kami telah download dan membuka file yang sudah diunzip di wireshark dan menjalankan `nc 10.15.43.32 3407`.
+
+   <img width="1910" height="578" alt="Screenshot 2025-10-01 185728" src="https://github.com/user-attachments/assets/420a7992-4d1b-4b0b-829c-7cfc07abd698" />
+
+	<img width="1919" height="1023" alt="Screenshot 2025-10-01 185801" src="https://github.com/user-attachments/assets/d205d02e-ef61-45aa-a7af-6df37efd69cf" />
+
+2. Kami mendapatkan beberapa pertanyaan :
+	- **What encryption method is used?** Format: string
+
+	Pada MelkorPlan5, lalu lintas data tidak lagi ditransmisikan dalam bentuk teks biasa (cleartext) seperti pada SMTP/HTTP sebelumnya. Seluruh komunikasi 			berjalan melalui protokol terenkripsi, sehingga kontennya tidak bisa langsung dibaca seperti perintah MAIL FROM/DATA atau HTTP/1.1 GET. Berdasarkan penggunaan 	port tertentu dan payload yang tampak teracak, dapat disimpulkan bahwa teknik enkripsi yang digunakan adalah TLS.
+
+NAME : **TLS**
+
+3. Setelah kita mendapat jawabannya, kami mendapat pertanyaan baru :
+   - **What is the name of the malicious file placed by the attacker?** Format: file.exe
+
+   Kami mencoba membuka Export Object HTTP, tetapi tidak bisa melihat file yang ada. 
+
+   <img width="1918" height="1021" alt="Screenshot 2025-10-01 191006" src="https://github.com/user-attachments/assets/9a00e1e9-a58a-4f92-a352-86664980a288" />
+
+   <img width="1919" height="1020" alt="Screenshot 2025-10-01 191103" src="https://github.com/user-attachments/assets/3928312a-ca2e-42df-8fb4-8b87293d14ae" />
+
+   Kami mencoba memasukan file `keyslogfile.txt` ke dalam Edit --> Preference --> Protocol --> TLS, dan setelah itu kembali lagi ke HTTP.
+
+   <img width="1919" height="1021" alt="Screenshot 2025-10-01 191257" src="https://github.com/user-attachments/assets/c8ca7c9f-ac8b-4749-a7ca-77eca4cad72d" />
+   
+	<img width="1919" height="1009" alt="Screenshot 2025-10-01 191628" src="https://github.com/user-attachments/assets/548490a0-9e7d-42bf-a272-151e1b3228db" />
+
+	Terdapat beberapa file yang ada dan yang berisi malware adalah `invest_20.dll`.
+
+	NAME FILE : **invest_20.dll**
+
+4. Setelah kita mengetahui file yang berisi malware, kita save file tersebut dan kita jalankan `sha256sum invest_20.dll` untuk mengetahui hash yang ditanyakan di soal.
+   - **What is the hash of the file containing the malware?** Format: sha256
+
+   <img width="1919" height="472" alt="Screenshot 2025-10-01 191808" src="https://github.com/user-attachments/assets/918d6ddf-87d6-4a80-95bb-b03cd11660d6" />
+
+   <img width="1919" height="616" alt="Screenshot 2025-10-01 191837" src="https://github.com/user-attachments/assets/24d402a6-0fc3-44e5-a4e8-7376cfdeee17" />
+
+   Setelah input jawabannya, kami langsung mendapatkan flagnya :
+   ```c
+	HAST : 31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f
+	FLAG : KOMJAR25{B3ware_0f_M4lw4re_tEVhkrmwIfmXMG774JWT27Xbu}
+   ```
 
 
+   
 
+
+   
 
 
 

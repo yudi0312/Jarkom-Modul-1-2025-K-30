@@ -9,6 +9,93 @@
 
 Sebuah kisah awal mula pembentukan dunia telah dibuka. Eru Ilúvatar atau yang nantinya disebut Eru adalah sang pencipta. Eru menciptakan roh-roh abadi yang disebut Ainur. Mereka adalah "anak-anak dari buah pikirannya". Eru meminta para Ainur untuk menciptakan musik agung bersama-sama. Melalui musik ini, sebuah visi tentang dunia yang akan datang (alam semesta) muncul. Ainu terkuat, Melkor, menjadi sombong dan memasukkan tema-tema sumbang dan egois ke dalam musik, menciptakan disonansi. Ini adalah asal mula kejahatan di alam semesta. Manwë Súlimo yang nantinya disebut Manwe adalah Ainu yang paling memahami kehendak Eru. Selama Musik Penciptaan, dialah yang menjadi konduktor utama untuk tema-tema dari Eru, sering kali berkonflik langsung dengan disonansi yang diciptakan Melkor. Ainur lainnya yang terlibat dalam pembentukan alam semesta dan turun ke Arda (Bumi) yaitu Varda Elentári (Varda) dan Ulmo.
 
+### TOPOLOGI JARINGAN
+
+<img width="771" height="682" alt="image" src="https://github.com/user-attachments/assets/f86f9586-b783-4619-bcd8-0cd7e10faeec" />
+
+### 1. Eru membuat dua switch dan setiap switch membuat 2 client.
+Untuk mempersiapkan pembuatan entitas selain mereka, Eru yang berperan sebagai Router membuat dua Switch/Gateway. Dimana Switch 1 akan menuju ke dua Ainur 		yaitu Melkor dan Manwe. Sedangkan Switch 2 akan menuju ke dua Ainur lainnya yaitu Varda dan Ulmo. Keempat Ainur tersebut diberi perintah oleh Eru untuk 		menjadi Client.
+
+Langkah-langkah : 
+- Jalankan ip `10.15.43.32` di browser dan masuk ke dalam folder project sesuai nama kelompok (wajib menggunakan jaringan lokal ITS).
+- Siapkan Router dengan nama Eru, siapkan 2 switch, dan siapkan 4 client yang bernama Melkor, Manwe, Varda, dan Ulmo.
+- Sambungkan dengan add link satu sama lainnya.
+
+### 2. Eru tersambung ke internet
+Awalnya Arda (Bumi) masih terisolasi dan tidak terhubung dengan dunia luar. Agar komunikasi dapat berlangsung secara global, Eru perlu dihubungkan ke internet melalui router/gateway. Dengan sambungan ini, Eru dapat mengakses jaringan eksternal, memungkinkan pertukaran data dengan sistem di luar Arda serta membuka konektivitas bagi para Ainur yang berperan sebagai client.
+
+```
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+	address 192.226.1.1
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 192.226.2.1
+	netmask 255.255.255.0
+up apt update
+up apt install -y iptables
+up iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.226.0.0/16
+```
+Konfigurasi di atas membuat Eru berfungsi sebagai router sekaligus gateway internet, di mana **eth0** memperoleh IP secara DHCP dari jaringan luar/VPN ITS agar dapat terkoneksi ke internet, sedangkan **eth1** dan **eth2** masing-masing diberi alamat statis **192.226.1.1/24** dan **192.226.2.1/24** untuk melayani dua segmen jaringan lokal (Switch 1 dan Switch 2). Perintah tambahan `up apt update` dan `up apt install -y iptables` memastikan paket iptables terpasang saat sistem dinyalakan, lalu aturan `iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.226.0.0/16` mengaktifkan NAT sehingga seluruh client dalam jaringan **192.226.x.x** dapat menerjemahkan alamat privatnya menjadi alamat publik Eru agar bisa mengakses internet secara langsung.
+
+### 3. Ainur dapat terhubung dengan yang lain
+- Melkor
+  ```
+  	auto eth0
+	iface eth0 inet static
+		address 192.226.1.2
+		netmask 255.255.255.0
+		gateway 192.226.1.1
+  ```
+- Manwe
+	```
+	auto eth0
+	iface eth0 inet static
+		address 192.226.1.3
+		netmask 255.255.255.0
+		gateway 192.226.1.1
+  	``` 
+- Varda
+  ```
+  auto eth0
+  iface eth0 inet static
+	address 192.226.2.2
+	netmask 255.255.255.0
+	gateway 192.226.2.1
+  ```
+- Ulmo
+  ```
+  auto eth0
+	iface eth0 inet static
+	address 192.226.2.3
+	netmask 255.255.255.0
+	gateway 192.226.2.1
+  ```
+Konfigurasi di atas mengatur IP statis untuk masing-masing Ainur agar mereka bisa saling terhubung melalui router Eru. **Melkor** dan **Manwe** ditempatkan dalam jaringan **192.226.1.0/24** dengan alamat **192.226.1.2** dan **192.226.1.3**, menggunakan **192.226.1.1** (eth1 milik Eru) sebagai gateway. Sementara itu, **Varda** dan **Ulmo** berada dalam jaringan **192.226.2.0/24** dengan alamat **192.226.2.2** dan **192.226.2.3**, menggunakan **192.226.2.1** (eth2 milik Eru) sebagai gateway. Dengan pembagian subnet seperti ini, komunikasi antar-Client dalam satu jaringan langsung dilakukan melalui switch masing-masing, sedangkan komunikasi antar-jaringan (misalnya Melkor ke Varda) akan dilewatkan melalui Eru sebagai router, sehingga seluruh Ainur dapat saling berhubungan meski berada di segmen yang berbeda.
+
+### 4. Eru ingin agar setiap Ainur (Client) dapat mandiri
+Setelah berhasil terhubung, sekarang Eru ingin agar setiap Ainur (Client) dapat mandiri. Oleh karena itu pastikan agar setiap Client dapat tersambung ke internet.
+
+Agar setiap client dapat mengakses internet, tambahkan konfigurasi DNS dengan menjalankan perintah
+```
+echo "nameserver 192.168.122.1" > /etc/resolv.conf
+```
+
+Setelah itu lakukan pengecekan koneksi menggunakan ping google.com. Jika ping berhasil, berarti client sudah terhubung ke internet. Terakhir, pastikan setiap perangkat telah menggunakan alamat IP yang sesuai dengan melakukan pengecekan melalui perintah ip a.
+
+### 5. Eru dan para Ainur lainnya meminta agar semua konfigurasi tidak hilang 
+Ainur terkuat Melkor tetap berusaha untuk menanamkan kejahatan ke dalam Arda (Bumi). Sebelum terjadi kerusakan, Eru dan para Ainur lainnya meminta agar semua konfigurasi tidak hilang saat semua node di restart.
+
+<img width="1919" height="809" alt="image" src="https://github.com/user-attachments/assets/a7023734-ccbb-4970-b920-41a68d968c37" />
+
+Lakukan pengeditan pada file **/root/.bashrc** dan tambahkan perintah seperti `apt update`, `apt install`, atau perintah lain yang diperlukan. Dengan cara ini, setiap kali sistem dijalankan ulang, paket yang sudah terpasang tetap tersedia dan konfigurasi tidak hilang.
+
+### 6. 
 ### 14. Melkor melancarkan serangan brute force terhadap  Manwe. 
 
 Setelah gagal mengakses FTP, Melkor melancarkan serangan brute force terhadap  Manwe. Analisis file capture yang disediakan dan identifikasi upaya brute force Melkor. 

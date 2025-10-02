@@ -95,7 +95,82 @@ Ainur terkuat Melkor tetap berusaha untuk menanamkan kejahatan ke dalam Arda (Bu
 
 Lakukan pengeditan pada file **/root/.bashrc** dan tambahkan perintah seperti `apt update`, `apt install`, atau perintah lain yang diperlukan. Dengan cara ini, setiap kali sistem dijalankan ulang, paket yang sudah terpasang tetap tersedia dan konfigurasi tidak hilang.
 
-### 6. 
+### 6. Pada soal nomer 6 setelah ainur terhubung ke internet, Melkor mencoba masuk ke komunikasi antara manwe dan eru
+
+Nah langkah pertama di sini kami memasukan file berupa file traffic.zip ke dalam sistem Manwe
+
+1. Melakukan ``wget --no-check-certificate -O traffic.zip "https://drive.google.com/uc?export=download&id=1bE3kF1Nclw0VyKq4bL2VtOOt53IC7lG5"`` ke dalam manwe
+
+[BUKTI FOTO]
+
+2. Setelah traffic.zip terinstall langkah selanjutnya ada melakukan unzip terhadap file traffic.zip tersebut
+
+[BUKTI FOTO]
+
+3. Setelah melakukan unzip akan muncul file bernamakan traffic.sh, setelah itu langsung saja di dalam manwe dijalnkan file traffic.sh tersebut ``./traffic.sh``
+
+[BUKTI FOTO]
+
+4. Setelah itu buka wireshark untuk melihat mendapatkan file capture di wireshark tersebut
+
+### 7 Pada nomor demi meningkatkan keamanan eru, lakukan konfigurasi FTP Server pada node eru dengan membuat dua user baru ainur dan melkor, ainur dengan hak akses write & read dan melkor tanpa hak akses sama sekali ke direktori shared
+
+1. Langkah pertama, lakukan command ``apt update apt install vsftpd -y`` untuk menginstall vsftpd
+
+[BUKTI FOTO]
+
+2. Setelah itu, masuk ke dalam ``nano /etc/vsftpd.conf`` untuk melakukan pengeditan pada beberapa baris berikut
+local_enable=YES
+write_enable=YES
+chroot_local_user=YES
+listen=YES
+listen_ipv6=NO
+
+[BUKTI FOTO]
+
+3. make directory untuk user yaitu ``mkdir -p /srv/ftp/shared``
+
+[BUKTI FOTO]
+
+4. masukan user ainur dan melkor dan masukan pula password pada kedua user tersebut ``adduser ainur`` ``adduser melkor``
+
+[BUKTI FOTO]
+
+5. Mengubah kepemilikan owner terhadap ainur dengan melakukan
+``chown ainur:ainur /srv/ftp/shared``
+``chmod 770 /srv/ftp/shared``
+``chmod 700 /srv/ftp/shared``
+
+[BUKTI FOTO]
+
+6. Masukan file test.txt dengan melakukan command ``echo "File tes FTP" > test.txt
+
+[BUKTI FOTO]
+
+7. masuk ke dalam server ftp dengan command ``ftp 192.226.1.1`` dan mencoba seluruh akses ainur
+``ftp 192.226.1.1``
+``login ke user ainur``
+``ftp > ascii``
+``ftp > cd shared``
+``ftp> put test.txt``
+``ftp> ls``
+``ftp> get test.txt``
+
+[BUKTI FOTO]
+
+8. Terakhir untuk mencoba akses yang dibatasi yaitu user melkor, langsung saja masuk dengan cara yang sama
+``ftp 192.226.1.1``
+``login ke user ainur``
+``ftp > ascii``
+``ftp > cd shared``
+``ftp > put test.txt``
+
+hasil akan membuat melkor tidak memiliki akses untuk directory shared (lokal)
+
+[BUKTI FOTO]
+
+### 8 
+
 ### 14. Melkor melancarkan serangan brute force terhadap  Manwe. 
 
 Setelah gagal mengakses FTP, Melkor melancarkan serangan brute force terhadap  Manwe. Analisis file capture yang disediakan dan identifikasi upaya brute force Melkor. 

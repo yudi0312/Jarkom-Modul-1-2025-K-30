@@ -169,7 +169,41 @@ hasil akan membuat melkor tidak memiliki akses untuk directory shared (lokal)
 
 [BUKTI FOTO]
 
-### 8 
+### 8 Ulmo perlu mengirimkan data ramalan cuaca ke node eru, lakukan koneksi sebagai client dari node ulmo ke ftp server eru menggunakan user ainur, upload file cuaca.zip dan analisis proses ini menggunakan wireshark dan identifikasi perintah FTP yang digunakan 
+
+1. Langkah pertama, masuk ke client Ulmo dan lakukan ``wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=11ra_yTV_adsPIXeIPMSt0vrxCBZu0r33&export=download" -O cuaca.zip`` untuk menginstall cuaca.zip di ulmo
+
+[BUKTI FOTO]
+
+2. Lakukan unzip cuaca.zip tersebut
+
+[BUKTI FOTO]
+
+3. Install terlebih dahulu vsftpd terlebih dahulu
+``service vsftpd start``
+``apt update``
+``apt install vsftpd -y``
+
+[BUKTI FOTO]
+
+4. masuk ke dalam vsftpd server dan install ftp
+``service vsftpd start``
+``apt update``
+``apt install ftp -y``
+
+[BUKTI FOTO]
+
+5. Masuk ke dalam ftp server, karena ulmo berada di switch 2 maka masukan
+``ftp 192.226.2.1``
+``login ainur``
+``ftp > cd shared``
+``ftp > put cuaca.txt``
+``ftp > put mendung.jpg``
+**DISCLAIMER SEBELUM MELAKUKAN ANALISIS, BISA BUKA WIRESHARK TERLEBIH DAHULU**
+
+[BUKTI FOTO LOGIN DAN WIRESHARK]
+
+###9 
 
 ### 14. Melkor melancarkan serangan brute force terhadap  Manwe. 
 

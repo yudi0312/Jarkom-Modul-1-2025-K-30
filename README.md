@@ -203,7 +203,52 @@ hasil akan membuat melkor tidak memiliki akses untuk directory shared (lokal)
 
 [BUKTI FOTO LOGIN DAN WIRESHARK]
 
-###9 
+###9 Eru ingin membagikan "Kitab penciptaan" file kitab_penciptaan.zip kepada Manawe. Dari FTP server eru mendownload file tersebut ke node manwe. Karena Eru merasa kitab tersebut sangat penting maka ia mengubah akses user ainur menjadi read-only, setelah itu gunakan wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur
+
+1. Pada langkah awal, lakukan instalasi kitab_penciptaan.zip terlebih dahulu dengan ``wget --no-check-certificate "https://drive.google.com/uc?export=download&id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY" -O kitab_penciptaan.zip``
+
+[BUKTI FOTO]
+
+2. unzip kitab_penciptaan.zip langsung
+
+[BUKTI FOTO]
+
+3. Jalankan server ftp dan restart server ftp dengan ``service vsftpd restart`` supaya memastikan layanan FTP aktif kembali setelah perubahan konfigurasi atau izin file
+
+[BUKTI FOTO]
+
+4. masuk ke dalam server dan kirim file oleh eru ke server ftp yaitu dengan ``ftp 192.226.1.1`` setelah itu ``ftp>put kitab_penciptaan.txt``
+
+[BUKTI FOTO]
+
+5. langkah selanjutnya masuk dengan Manwe dan install file kitab dari FTP server
+``ftp 192.226.1.1``
+``login manwe``
+``ftp>get kitab_penciptaan.txt``
+
+[BUKTI FOTO]
+
+6. Nah kita harus membatasi akses untuk user ainur, caranya adalah
+``chmod 555 /srv/ftp/shared``
+``sevice vstfpd restart``
+
+nah sehingga folder /srv/ftp/shared jadi read-only
+
+7. Langsung saja dicoba dengan user ainur yaitu dengan memasukan
+``ftp 192.226.1.1``
+``login ainur``
+``ftp> put test.txt``
+Hasil harus gagal, karena permission sudah diubah menjadi read-only
+
+[BUKTI FOTO]
+
+8. Masuk ke dalam wireshark dan saat upload bisa cek command STOR filename (untuk put), saat download cek command RETR filename (untuk get)
+
+###10 Melkor yang marah karena tidak diberi akses mencoba melakukan serangan dengan mengirimkan banyak sekali request ke server Eru dengan menggunakan command ping dari node Melkor ke node eru dengan jumlah paket yang tidak biasa (spam ping misalnya 100 paket)
+
+1. Caranya langsung saja melakukan ping ke pada Eru dengan command ``ping 192.122.1.1 -c 100``
+
+[BUKTI FOTO]
 
 ### 14. Melkor melancarkan serangan brute force terhadap  Manwe. 
 

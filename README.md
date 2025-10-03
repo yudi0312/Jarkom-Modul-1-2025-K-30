@@ -269,6 +269,8 @@ wget --no-check-certificate "https://drive.google.com/uc?export=download&id=11ua
 ```
 adduser eru
 ftp 192.226.1.1
+login eru
+ftp>cd shared
 ftp>put kitab_penciptaan.txt
 ```
 

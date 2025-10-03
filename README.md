@@ -139,9 +139,9 @@ allow_writeable_chroot=YES
 <img width="454" height="24" alt="Screenshot 2025-10-03 105311" src="https://github.com/user-attachments/assets/cc1dce89-516b-40b5-a742-7e20ec799f43" />
 
 
-4. masukan user ainur dan melkor dan masukan pula password pada kedua user tersebut ```
+4. masukan user ainur dan melkor dan masukan pula password pada kedua user tersebut
   ```
-   adduser ainur adduser melkor```
+   adduser ainur adduser melkor
   ```
 <img width="719" height="552" alt="Screenshot 2025-10-03 104419" src="https://github.com/user-attachments/assets/32ddf48c-9dc0-4d5a-acf4-c2cc03f8955f" />
 

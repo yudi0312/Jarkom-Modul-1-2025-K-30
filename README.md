@@ -120,7 +120,8 @@ Nah langkah pertama di sini kami memasukan file berupa file traffic.zip ke dalam
 
 1. Langkah pertama, lakukan command ``apt update apt install vsftpd -y`` untuk menginstall vsftpd
 
-[BUKTI FOTO]
+<img width="944" height="539" alt="Screenshot 2025-10-03 104137" src="https://github.com/user-attachments/assets/f5ad6ff7-2bd2-4258-a972-92d13ada79ca" />
+
 
 2. Setelah itu, masuk ke dalam ``nano /etc/vsftpd.conf`` untuk melakukan pengeditan pada beberapa baris berikut
 local_enable=YES
@@ -128,27 +129,39 @@ write_enable=YES
 chroot_local_user=YES
 listen=YES
 listen_ipv6=NO
+allow_writeable_chroot=YES
 
-[BUKTI FOTO]
+
+<img width="953" height="896" alt="Screenshot 2025-10-03 105158" src="https://github.com/user-attachments/assets/94571bcc-a8b1-4fe0-b2ed-6d9151440785" />
 
 3. make directory untuk user yaitu ``mkdir -p /srv/ftp/shared``
 
-[BUKTI FOTO]
+<img width="454" height="24" alt="Screenshot 2025-10-03 105311" src="https://github.com/user-attachments/assets/cc1dce89-516b-40b5-a742-7e20ec799f43" />
+
 
 4. masukan user ainur dan melkor dan masukan pula password pada kedua user tersebut ``adduser ainur`` ``adduser melkor``
 
-[BUKTI FOTO]
+<img width="719" height="552" alt="Screenshot 2025-10-03 104419" src="https://github.com/user-attachments/assets/32ddf48c-9dc0-4d5a-acf4-c2cc03f8955f" />
+
 
 5. Mengubah kepemilikan owner terhadap ainur dengan melakukan
-``chown ainur:ainur /srv/ftp/shared``
-``chmod 770 /srv/ftp/shared``
-``chmod 700 /srv/ftp/shared``
+``mkdir -p /home/ainur/shared``
+``chown ainur:ainur /home/ainur/shared``
+``chmod 755 /home/ainur/shared``
 
-[BUKTI FOTO]
+``mkdir -p /srv/ftp/shared``
+``chown ainur:ainur /srv/ftp/shared``
+``chmod 755 /srv/ftp/shared``
+
+
+
+<img width="568" height="67" alt="Screenshot 2025-10-03 105350" src="https://github.com/user-attachments/assets/7e7812d7-1e8a-4b62-9d94-b9287ade4a82" />
+
 
 6. Masukan file test.txt dengan melakukan command ``echo "File tes FTP" > test.txt
 
-[BUKTI FOTO]
+<img width="539" height="24" alt="Screenshot 2025-10-03 105407" src="https://github.com/user-attachments/assets/76a562af-9ba3-4de4-86fe-b41b2a64fcf2" />
+
 
 7. masuk ke dalam server ftp dan install dulu ``apt install -y ftp`` Setelah itu lanjut ke install vsftpd ``apt update`` ``apt install -y vsftpd`` ``service vsftpd start`` ``ftp 192.226.1.1`` dan mencoba seluruh akses ainur
 ``ftp 192.226.1.1``
@@ -159,18 +172,20 @@ listen_ipv6=NO
 ``ftp> ls``
 ``ftp> get test.txt``
 
-[BUKTI FOTO]
+<img width="933" height="681" alt="Screenshot 2025-10-03 110049" src="https://github.com/user-attachments/assets/ba2942d6-5661-4cbe-ba81-d123d2dfbc5c" />
+
 
 8. Terakhir untuk mencoba akses yang dibatasi yaitu user melkor, langsung saja masuk dengan cara yang sama
 ``ftp 192.226.1.1``
-``login ke user ainur``
+``login ke user melkor``
 ``ftp > ascii``
 ``ftp > cd shared``
 ``ftp > put test.txt``
 
 hasil akan membuat melkor tidak memiliki akses untuk directory shared (lokal)
 
-[BUKTI FOTO]
+<img width="571" height="249" alt="Screenshot 2025-10-03 110133" src="https://github.com/user-attachments/assets/bc8f6ea1-e55e-4383-bd5b-8c134f77f64f" />
+
 
 ### 8 Ulmo perlu mengirimkan data ramalan cuaca ke node eru, lakukan koneksi sebagai client dari node ulmo ke ftp server eru menggunakan user ainur, upload file cuaca.zip dan analisis proses ini menggunakan wireshark dan identifikasi perintah FTP yang digunakan 
 

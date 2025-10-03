@@ -150,7 +150,7 @@ listen_ipv6=NO
 
 [BUKTI FOTO]
 
-7. masuk ke dalam server ftp dengan command ``ftp 192.226.1.1`` dan mencoba seluruh akses ainur
+7. masuk ke dalam server ftp dengan command ``service vsftpd start`` ``ftp 192.226.1.1`` dan mencoba seluruh akses ainur
 ``ftp 192.226.1.1``
 ``login ke user ainur``
 ``ftp > ascii``

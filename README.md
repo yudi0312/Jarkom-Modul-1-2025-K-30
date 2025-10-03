@@ -101,7 +101,8 @@ Nah langkah pertama di sini kami memasukan file berupa file traffic.zip ke dalam
 
 1. Melakukan ``wget --no-check-certificate -O traffic.zip "https://drive.google.com/uc?export=download&id=1bE3kF1Nclw0VyKq4bL2VtOOt53IC7lG5"`` ke dalam manwe
 
-[BUKTI FOTO]
+<img width="934" height="679" alt="Screenshot 2025-10-03 103544" src="https://github.com/user-attachments/assets/c4538bbd-b144-46de-8a8d-72ff5d87dc9e" />
+
 
 2. Setelah traffic.zip terinstall langkah selanjutnya ada melakukan unzip terhadap file traffic.zip tersebut ``apt update`` dan ``apt install unzip -y``
 

@@ -253,15 +253,17 @@ service vsftpd start
 wget --no-check-certificate "https://drive.google.com/uc?export=download&id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY" -O kitab_penciptaan.zip
 ```
 
-[BUKTI FOTO]
+<img width="940" height="547" alt="Screenshot 2025-10-03 113732" src="https://github.com/user-attachments/assets/0a343396-bf08-4cb0-9202-079cd295e3df" />
 
 2. unzip kitab_penciptaan.zip langsung
 
-[BUKTI FOTO]
+<img width="495" height="100" alt="Screenshot 2025-10-03 113816" src="https://github.com/user-attachments/assets/d15242a7-63c2-4d92-ba87-87eda5d1a69f" />
+
 
 3. Jalankan server ftp dan restart server ftp dengan ``service vsftpd restart`` supaya memastikan layanan FTP aktif kembali setelah perubahan konfigurasi atau izin file
 
-[BUKTI FOTO]
+<img width="477" height="98" alt="Screenshot 2025-10-03 113845" src="https://github.com/user-attachments/assets/b437396a-62d8-4300-baac-bb941c0f0f2c" />
+
 
 4. masuk ke dalam server dan kirim file oleh eru ke server ftp yaitu dengan
 ```
@@ -270,8 +272,8 @@ ftp 192.226.1.1
 ftp>put kitab_penciptaan.txt
 ```
 
+<img width="938" height="393" alt="Screenshot 2025-10-03 113927" src="https://github.com/user-attachments/assets/57a19bc9-52ac-44b3-aec9-e5604f250bbc" />
 
-[BUKTI FOTO]
 
 5. langkah selanjutnya masuk dengan Manwe dan install file kitab dari FTP server
 ```

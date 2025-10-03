@@ -103,7 +103,7 @@ Nah langkah pertama di sini kami memasukan file berupa file traffic.zip ke dalam
 
 [BUKTI FOTO]
 
-2. Setelah traffic.zip terinstall langkah selanjutnya ada melakukan unzip terhadap file traffic.zip tersebut
+2. Setelah traffic.zip terinstall langkah selanjutnya ada melakukan unzip terhadap file traffic.zip tersebut ``apt update`` dan ``apt install unzip -y``
 
 [BUKTI FOTO]
 

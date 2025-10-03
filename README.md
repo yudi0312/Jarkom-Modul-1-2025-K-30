@@ -99,17 +99,17 @@ Lakukan pengeditan pada file **/root/.bashrc** dan tambahkan perintah seperti `a
 
 Nah langkah pertama di sini kami memasukan file berupa file traffic.zip ke dalam sistem Manwe
 
-1. Melakukan ``wget --no-check-certificate -O traffic.zip "https://drive.google.com/uc?export=download&id=1bE3kF1Nclw0VyKq4bL2VtOOt53IC7lG5"`` ke dalam manwe
+1. Melakukan ke dalam manwe ```wget --no-check-certificate -O traffic.zip "https://drive.google.com/uc?export=download&id=1bE3kF1Nclw0VyKq4bL2VtOOt53IC7lG5"``` 
 
 <img width="934" height="679" alt="Screenshot 2025-10-03 103544" src="https://github.com/user-attachments/assets/c4538bbd-b144-46de-8a8d-72ff5d87dc9e" />
 
 
-2. Setelah traffic.zip terinstall langkah selanjutnya ada melakukan unzip terhadap file traffic.zip tersebut ``apt update`` dan ``apt install unzip -y``
+2. Setelah traffic.zip terinstall langkah selanjutnya ada melakukan unzip terhadap file traffic.zip tersebut ```apt update apt install unzip -y```
 
 <img width="404" height="66" alt="Screenshot 2025-10-03 103742" src="https://github.com/user-attachments/assets/d0964835-6263-474a-a190-d05232828138" />
 
 
-3. Setelah melakukan unzip akan muncul file bernamakan traffic.sh, setelah itu langsung saja di dalam manwe dijalnkan file traffic.sh tersebut ``./traffic.sh``
+3. Setelah melakukan unzip akan muncul file bernamakan traffic.sh, setelah itu langsung saja di dalam manwe dijalnkan file traffic.sh tersebut ```./traffic.sh```
 
 <img width="654" height="114" alt="Screenshot 2025-10-03 103842" src="https://github.com/user-attachments/assets/d793e5c7-c031-4d61-9d26-e071b51697b8" />
 
@@ -118,12 +118,12 @@ Nah langkah pertama di sini kami memasukan file berupa file traffic.zip ke dalam
 
 ### 7 Pada nomor demi meningkatkan keamanan eru, lakukan konfigurasi FTP Server pada node eru dengan membuat dua user baru ainur dan melkor, ainur dengan hak akses write & read dan melkor tanpa hak akses sama sekali ke direktori shared
 
-1. Langkah pertama, lakukan command ``apt update apt install vsftpd -y`` untuk menginstall vsftpd
+1. Langkah pertama, lakukan command ```apt update apt install vsftpd -y``` untuk menginstall vsftpd
 
 <img width="944" height="539" alt="Screenshot 2025-10-03 104137" src="https://github.com/user-attachments/assets/f5ad6ff7-2bd2-4258-a972-92d13ada79ca" />
 
 
-2. Setelah itu, masuk ke dalam ``nano /etc/vsftpd.conf`` untuk melakukan pengeditan pada beberapa baris berikut
+2. Setelah itu, masuk ke dalam ```nano /etc/vsftpd.conf``` untuk melakukan pengeditan pada beberapa baris berikut
 local_enable=YES
 write_enable=YES
 chroot_local_user=YES
@@ -134,24 +134,27 @@ allow_writeable_chroot=YES
 
 <img width="953" height="896" alt="Screenshot 2025-10-03 105158" src="https://github.com/user-attachments/assets/94571bcc-a8b1-4fe0-b2ed-6d9151440785" />
 
-3. make directory untuk user yaitu ``mkdir -p /srv/ftp/shared``
+3. make directory untuk user yaitu ```mkdir -p /srv/ftp/shared```
 
 <img width="454" height="24" alt="Screenshot 2025-10-03 105311" src="https://github.com/user-attachments/assets/cc1dce89-516b-40b5-a742-7e20ec799f43" />
 
 
-4. masukan user ainur dan melkor dan masukan pula password pada kedua user tersebut ``adduser ainur`` ``adduser melkor``
-
+4. masukan user ainur dan melkor dan masukan pula password pada kedua user tersebut ```
+  ```
+   adduser ainur adduser melkor```
+  ```
 <img width="719" height="552" alt="Screenshot 2025-10-03 104419" src="https://github.com/user-attachments/assets/32ddf48c-9dc0-4d5a-acf4-c2cc03f8955f" />
 
 
 5. Mengubah kepemilikan owner terhadap ainur dengan melakukan
-`mkdir -p /home/ainur/shared`
-`chown ainur:ainur /home/ainur/shared`
-`chmod 755 /home/ainur/shared`
-
-`mkdir -p /srv/ftp/shared`
-`chown ainur:ainur /srv/ftp/shared`
-`chmod 755 /srv/ftp/shared`
+```
+mkdir -p /home/ainur/shared
+chown ainur:ainur /home/ainur/shared
+chmod 755 /home/ainur/shared
+mkdir -p /srv/ftp/shared
+chown ainur:ainur /srv/ftp/shared
+chmod 755 /srv/ftp/shared
+```
 
 
 
@@ -163,24 +166,29 @@ allow_writeable_chroot=YES
 <img width="539" height="24" alt="Screenshot 2025-10-03 105407" src="https://github.com/user-attachments/assets/76a562af-9ba3-4de4-86fe-b41b2a64fcf2" />
 
 
-7. masuk ke dalam server ftp dan install dulu ``apt install -y ftp`` Setelah itu lanjut ke install vsftpd ``apt update`` ``apt install -y vsftpd`` ``service vsftpd start`` ``ftp 192.226.1.1`` dan mencoba seluruh akses ainur
-``ftp 192.226.1.1``
-``login ke user ainur``
-``ftp > ascii``
-``ftp > cd shared``
-``ftp> put test.txt``
-``ftp> ls``
-``ftp> get test.txt``
+7. masuk ke dalam server ftp dan install dulu ``apt install -y ftp`` Setelah itu lanjut ke install vsftpd ``apt update`` ``apt install -y vsftpd`` ``service vsftpd start`` ``
+```
+ftp 192.226.1.1 dan mencoba seluruh akses ainur
+ftp 192.226.1.1
+login ke user ainur
+ftp > ascii
+ftp > cd shared
+ftp> put test.txt
+ftp> ls
+ftp> get test.txt
+```
 
 <img width="933" height="681" alt="Screenshot 2025-10-03 110049" src="https://github.com/user-attachments/assets/ba2942d6-5661-4cbe-ba81-d123d2dfbc5c" />
 
 
 8. Terakhir untuk mencoba akses yang dibatasi yaitu user melkor, langsung saja masuk dengan cara yang sama
-``ftp 192.226.1.1``
-``login ke user melkor``
-``ftp > ascii``
-``ftp > cd shared``
-``ftp > put test.txt``
+```
+ftp 192.226.1.1
+login ke user melkor
+ftp > ascii
+ftp > cd shared
+ftp > put test.txt
+```
 
 hasil akan membuat melkor tidak memiliki akses untuk directory shared (lokal)
 

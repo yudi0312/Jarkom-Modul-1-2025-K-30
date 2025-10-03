@@ -303,9 +303,9 @@ Hasil harus gagal, karena permission sudah diubah menjadi read-only
 
 ### 10 Melkor yang marah karena tidak diberi akses mencoba melakukan serangan dengan mengirimkan banyak sekali request ke server Eru dengan menggunakan command ping dari node Melkor ke node eru dengan jumlah paket yang tidak biasa (spam ping misalnya 100 paket)
 
-1. Caranya langsung saja melakukan ping ke pada Eru dengan command ``ping 192.122.1.1 -c 100``
+1. Caranya langsung saja melakukan ping ke pada Eru dengan command ``ping 192.226.1.1 -c 100``
 
-[BUKTI FOTO]
+<img width="867" height="818" alt="Screenshot 2025-10-03 140650" src="https://github.com/user-attachments/assets/3e535691-3790-4db4-bc62-cea59d2d11b7" />
 
 ### 14. Melkor melancarkan serangan brute force terhadap  Manwe. 
 

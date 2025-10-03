@@ -248,7 +248,7 @@ service vsftpd start
 
 ### 9 Eru ingin membagikan "Kitab penciptaan" file kitab_penciptaan.zip kepada Manwe. Dari FTP server eru mendownload file tersebut ke node manwe. Karena Eru merasa kitab tersebut sangat penting maka ia mengubah akses user ainur menjadi read-only, setelah itu gunakan wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur
 
-1. Pada langkah awal, lakukan instalasi kitab_penciptaan.zip terlebih dahulu dengan
+1. Pada langkah awal di Eru, lakukan instalasi kitab_penciptaan.zip terlebih dahulu dengan
 ```
 wget --no-check-certificate "https://drive.google.com/uc?export=download&id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY" -O kitab_penciptaan.zip
 ```
@@ -263,14 +263,23 @@ wget --no-check-certificate "https://drive.google.com/uc?export=download&id=11ua
 
 [BUKTI FOTO]
 
-4. masuk ke dalam server dan kirim file oleh eru ke server ftp yaitu dengan ``ftp 192.226.1.1`` setelah itu ``ftp>put kitab_penciptaan.txt``
+4. masuk ke dalam server dan kirim file oleh eru ke server ftp yaitu dengan
+```
+adduser eru
+ftp 192.226.1.1
+ftp>put kitab_penciptaan.txt
+```
+
 
 [BUKTI FOTO]
 
 5. langkah selanjutnya masuk dengan Manwe dan install file kitab dari FTP server
-``ftp 192.226.1.1``
-``login manwe``
-``ftp>get kitab_penciptaan.txt``
+```
+adduser Manwe
+ftp 192.226.1.1
+login Manwe
+ftp>get kitab_penciptaan.txt
+```
 
 [BUKTI FOTO]
 

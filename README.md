@@ -106,11 +106,13 @@ Nah langkah pertama di sini kami memasukan file berupa file traffic.zip ke dalam
 
 2. Setelah traffic.zip terinstall langkah selanjutnya ada melakukan unzip terhadap file traffic.zip tersebut ``apt update`` dan ``apt install unzip -y``
 
-[BUKTI FOTO]
+<img width="404" height="66" alt="Screenshot 2025-10-03 103742" src="https://github.com/user-attachments/assets/d0964835-6263-474a-a190-d05232828138" />
+
 
 3. Setelah melakukan unzip akan muncul file bernamakan traffic.sh, setelah itu langsung saja di dalam manwe dijalnkan file traffic.sh tersebut ``./traffic.sh``
 
-[BUKTI FOTO]
+<img width="654" height="114" alt="Screenshot 2025-10-03 103842" src="https://github.com/user-attachments/assets/d793e5c7-c031-4d61-9d26-e071b51697b8" />
+
 
 4. Setelah itu buka wireshark untuk melihat mendapatkan file capture di wireshark tersebut
 

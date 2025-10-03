@@ -197,27 +197,40 @@ hasil akan membuat melkor tidak memiliki akses untuk directory shared (lokal)
 
 ### 8 Ulmo perlu mengirimkan data ramalan cuaca ke node eru, lakukan koneksi sebagai client dari node ulmo ke ftp server eru menggunakan user ainur, upload file cuaca.zip dan analisis proses ini menggunakan wireshark dan identifikasi perintah FTP yang digunakan 
 
-1. Langkah pertama, masuk ke client Ulmo dan lakukan ``wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=11ra_yTV_adsPIXeIPMSt0vrxCBZu0r33&export=download" -O cuaca.zip`` untuk menginstall cuaca.zip di ulmo
+1. Langkah pertama, masuk ke client Ulmo dan lakukan untuk menginstall cuaca.zip di ulmo
+```
+wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=11ra_yTV_adsPIXeIPMSt0vrxCBZu0r33&export=download" -O cuaca.zip
+```
 
-[BUKTI FOTO]
+<img width="900" height="132" alt="Screenshot 2025-10-03 111315" src="https://github.com/user-attachments/assets/f5b71599-82e8-4943-9132-c809cc5e4053" />
+
 
 2. Lakukan unzip cuaca.zip tersebut
+```
+apt update
+apt install unzip -y
+```
 
-[BUKTI FOTO]
+<img width="406" height="91" alt="Screenshot 2025-10-03 111419" src="https://github.com/user-attachments/assets/932f61e7-7436-4b3f-84e8-a4c88e8b8083" />
+
 
 3. Install terlebih dahulu vsftpd terlebih dahulu
-``service vsftpd start``
-``apt update``
-``apt install vsftpd -y``
+```
+apt update
+apt install vsftpd -y
+service vsftpd start
+```
 
-[BUKTI FOTO]
+<img width="908" height="556" alt="Screenshot 2025-10-03 111848" src="https://github.com/user-attachments/assets/fcf8e433-d905-4820-a55f-5e943c86b7e2" />
+
 
 4. masuk ke dalam vsftpd server dan install ftp
 ``service vsftpd start``
 ``apt update``
 ``apt install ftp -y``
 
-[BUKTI FOTO]
+<img width="677" height="150" alt="Screenshot 2025-10-03 111912" src="https://github.com/user-attachments/assets/ee9ddb51-fad3-48d3-9ef6-5ee6f9003fe2" />
+
 
 5. Masuk ke dalam ftp server, karena ulmo berada di switch 2 maka masukan
 ``ftp 192.226.2.1``
@@ -227,11 +240,18 @@ hasil akan membuat melkor tidak memiliki akses untuk directory shared (lokal)
 ``ftp > put mendung.jpg``
 **DISCLAIMER SEBELUM MELAKUKAN ANALISIS, BISA BUKA WIRESHARK TERLEBIH DAHULU**
 
-[BUKTI FOTO LOGIN DAN WIRESHARK]
+<img width="921" height="575" alt="Screenshot 2025-10-03 111942" src="https://github.com/user-attachments/assets/2a913329-f0cc-45c0-beb8-730e2c04d797" />
 
-### 9 Eru ingin membagikan "Kitab penciptaan" file kitab_penciptaan.zip kepada Manawe. Dari FTP server eru mendownload file tersebut ke node manwe. Karena Eru merasa kitab tersebut sangat penting maka ia mengubah akses user ainur menjadi read-only, setelah itu gunakan wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur
+<img width="1900" height="760" alt="Screenshot 2025-10-03 112002" src="https://github.com/user-attachments/assets/300ad594-78c3-4a16-8f1b-964f9dbb6a4f" />
 
-1. Pada langkah awal, lakukan instalasi kitab_penciptaan.zip terlebih dahulu dengan ``wget --no-check-certificate "https://drive.google.com/uc?export=download&id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY" -O kitab_penciptaan.zip``
+
+
+### 9 Eru ingin membagikan "Kitab penciptaan" file kitab_penciptaan.zip kepada Manwe. Dari FTP server eru mendownload file tersebut ke node manwe. Karena Eru merasa kitab tersebut sangat penting maka ia mengubah akses user ainur menjadi read-only, setelah itu gunakan wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur
+
+1. Pada langkah awal, lakukan instalasi kitab_penciptaan.zip terlebih dahulu dengan
+```
+wget --no-check-certificate "https://drive.google.com/uc?export=download&id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY" -O kitab_penciptaan.zip
+```
 
 [BUKTI FOTO]
 

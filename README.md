@@ -148,12 +148,9 @@ allow_writeable_chroot=YES
 
 5. Mengubah kepemilikan owner terhadap ainur dengan melakukan
 ```
-mkdir -p /home/ainur/shared
+mkdir /home/ainur/shared
 chown ainur:ainur /home/ainur/shared
 chmod 755 /home/ainur/shared
-mkdir -p /srv/ftp/shared
-chown ainur:ainur /srv/ftp/shared
-chmod 755 /srv/ftp/shared
 ```
 
 

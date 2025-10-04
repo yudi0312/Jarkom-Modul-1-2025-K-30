@@ -151,6 +151,8 @@ allow_writeable_chroot=YES
 mkdir /home/ainur/shared
 chown ainur:ainur /home/ainur/shared
 chmod 755 /home/ainur/shared
+chown -R ainur:ainur /srv/ftp/shared
+chmod 755 /srv/ftp/shared
 ```
 
 
